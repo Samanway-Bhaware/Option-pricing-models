@@ -1,11 +1,21 @@
-[theme]
-primaryColor = "#FF4B4B"
-# backgroundColor = "#10344b"
-backgroundColor = "#0E1117"
-# secondaryBackgroundColor = "#154360"
-secondaryBackgroundColor = "#262730"
-textColor = "#FAFAFA"
-font = "sans serif"
-
 [server]
 enableStaticServing = true
+
+[theme]
+primaryColor = "#cb785c"
+backgroundColor = "#fdfdf8"
+secondaryBackgroundColor = "#ecebe3"
+textColor = "#3d3a2a"
+linkColor = "#3d3a2a"
+borderColor = "#d3d2ca"
+showWidgetBorder = true
+baseRadius = "0.75rem"
+codeBackgroundColor = "#ecebe4"
+showSidebarBorder = true
+chartCategoricalColors = ["#0ea5e9", "#059669", "#fbbf24"]
+
+[theme.sidebar]
+backgroundColor = "#f0f0ec"
+secondaryBackgroundColor = "#ecebe3"
+showWidgetBorder=true
+dataframeHeaderBackgroundColor = "#e4e4e0"
