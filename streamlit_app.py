@@ -17,7 +17,7 @@ st.markdown("""
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 8px; /* Adjust the padding to control height */
+    padding: 8px; /* Adjust the padding to control height */ 
     width: auto; /* Auto width for responsiveness, or set a fixed width if necessary */
     margin: 0 auto; /* Center the container */
 }
