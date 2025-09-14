@@ -77,12 +77,8 @@ def get_current_price(ticker):
         st.error(f"Error fetching current price for {ticker}: {str(e)}")
         return None
 
-# Ignore the Streamlit warning for using st.pyplot()
-st.set_option('deprecation.showPyplotGlobalUse', False)
-
-# Main title
 st.sidebar.title("📊 Option pricing")
-
+ 
 # User selected model from sidebar 
 # pricing_method = st.sidebar.radio('Please select option pricing method', options=[model.value for model in OPTION_PRICING_MODEL])
 #User selected model from sidebar dropdown
@@ -126,7 +122,7 @@ if pricing_method == OPTION_PRICING_MODEL.BLACK_SCHOLES.value:
     exercise_date = st.sidebar.date_input('Exercise date', min_value=datetime.today() + timedelta(days=1), value=datetime.today() + timedelta(days=365))
     st.sidebar.caption("The date when the option can be exercised")
     
-    if st.sidebar.button(f'Calculate option price for {company_name}'):
+    if st.sidebar.button(f'Calculate option price for {company_name}', type="primary"):
         try:
             with st.spinner('Fetching data...'):
                 data = get_historical_data(ticker)
@@ -226,7 +222,7 @@ elif pricing_method == OPTION_PRICING_MODEL.MONTE_CARLO.value:
 
     num_of_movements = st.sidebar.slider('Number of price movement simulations to be visualized ', 0, int(number_of_simulations/10), 100, help="The number of simulated price paths to display on the graph")
 
-    if st.sidebar.button(f'Calculate option price for {company_name}'):
+    if st.sidebar.button(f'Calculate option price for {company_name}', type="primary"):
         try:
             with st.spinner('Fetching data...'):
                 data = get_historical_data(ticker)
@@ -284,10 +280,12 @@ elif pricing_method == OPTION_PRICING_MODEL.MONTE_CARLO.value:
                     """, unsafe_allow_html=True)
                 st.write("Data fetched successfully:")
                 st.write(data.tail())
-                MC.plot_simulation_results(num_of_movements)
-                st.pyplot()
-                fig = Ticker.plot_data(data, ticker, 'Close')
-                st.pyplot(fig)
+
+                fig1 = MC.plot_simulation_results(num_of_movements)  
+                st.pyplot(fig1)                                      
+
+                fig2 = Ticker.plot_data(data, ticker, 'Close')
+                st.pyplot(fig2)
 
             else:
                 st.sidebar.error("Unable to proceed with calculations due to data fetching error.")
@@ -329,7 +327,7 @@ elif pricing_method == OPTION_PRICING_MODEL.BINOMIAL.value:
 
     number_of_time_steps = st.sidebar.slider('Number of time steps', 5000, 100000, 15000, help="The number of periods in the binomial tree. More steps increase accuracy but take longer to compute.")
 
-    if st.sidebar.button(f'Calculate option price for {company_name}'):
+    if st.sidebar.button(f'Calculate option price for {company_name}', type="primary"):
         try:
             with st.spinner('Fetching data...'):
                 data = get_historical_data(ticker)
